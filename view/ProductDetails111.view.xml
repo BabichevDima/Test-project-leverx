@@ -1,0 +1,87 @@
+<mvc:View controllerName="dmitry.babichev.controller.ProductDetails111"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:tnt="sap.tnt"
+	xmlns:layout="sap.ui.layout" height="100%">
+	<f:DynamicPage>
+
+		<!-- ProductDetails Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{i18n>TherdPage}"/>
+				</f:heading>
+				<f:breadcrumbs>
+					<Breadcrumbs>
+						<Link text="{i18n>FirstPageName}" press="onNavToStoresOverview"/>
+						<Link text="{i18n>SecondPageName}" press="onNavToStoreDetails"/>
+						<Link text="{i18n>TherdPage}"/>
+					</Breadcrumbs>
+				</f:breadcrumbs>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<!-- ProductDetails Header -->
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<f:content>
+					<layout:HorizontalLayout allowWrapping="true">
+						<layout:VerticalLayout class="sapUiMediumMarginEnd">
+							<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
+								<Label design="Bold" text="{i18n>Price}:" class="sapUiTinyMarginEnd"/>
+								<Text text="{oData>Price} USD"/>
+							</FlexBox>
+							<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
+								<Label design="Bold" text="{i18n>Rating}:" class="sapUiTinyMarginEnd"/>
+								<Text text="{oData>Rating}"/>
+							</FlexBox>
+							<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
+								<Label design="Bold" text="{i18n>MadeIn}:" class="sapUiTinyMarginEnd"/>
+								<Text text="{oData>MadeIn}"/>
+							</FlexBox>
+						</layout:VerticalLayout>
+						<layout:VerticalLayout>
+							<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
+								<Label design="Bold" text="{i18n>ProductionCompanyName}:" class="sapUiTinyMarginEnd"/>
+								<Text text="{oData>ProductionCompanyName}"/>
+							</FlexBox>
+							<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
+								<Label design="Bold" text="{i18n>Status}:" class="sapUiTinyMarginEnd"/>
+								<tnt:InfoLabel	text="{oData>Status}"
+												renderMode="Narrow"
+												colorScheme="{path: 'oData>Status',	formatter: '.formatter.statusProductColor'}"/>
+							</FlexBox>
+						</layout:VerticalLayout>
+					</layout:HorizontalLayout>
+					<VBox>
+						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
+							<Label design="Bold" text="{i18n>Specs}:" class="sapUiTinyMarginEnd"/>
+							<Text text="{oData>Specs}"/>
+						</FlexBox>
+						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
+							<Label design="Bold" text="{i18n>SupplierInfo}:" class="sapUiTinyMarginEnd"/>
+							<Text text="{oData>SupplierInfo}"/>
+						</FlexBox>
+					</VBox>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+
+		<!-- ProductDetails List -->
+		<f:content>
+			<VBox>
+				<HBox alignItems="Center">
+					<Text text="{i18n>Author}:" class="sapUiSmallMarginEnd"/>
+					<Input id="Author" placeholder="{i18n>PlaceholderFieldName}" value="{Author}"/>
+					<RatingIndicator id="Rating" maxValue="5" class="sapUiSmallMarginBegin" value="{Rating}" tooltip="Rating Tooltip" />
+				</HBox>
+				<FeedInput id="Message" value="{Message}" placeholder="{i18n>Message}" post="onCreateCommentPress" icon="sap-icon://employee" class="sapUiSmallMarginTopBottom" />
+				<List id="CommentsList" items="{oData>/ProductComments}" showSeparators="Inner">
+					<FeedListItem sender="{oData>Author}" icon="sap-icon://employee" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false" info="{i18n>Rating}: {oData>Rating}" timestamp="{ path: 'oData>Posted', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd MMM YYYY'}}" text="{oData>Message}" convertLinksToAnchorTags="All"/>
+				</List>
+			</VBox>
+		</f:content>
+
+	</f:DynamicPage>
+</mvc:View>

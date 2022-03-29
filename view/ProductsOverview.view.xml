@@ -1,0 +1,148 @@
+<mvc:View controllerName="dmitry.babichev.controller.ProductsOverview"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:layout="sap.ui.layout"
+	xmlns:core="sap.ui.core" height="100%">
+	<f:DynamicPage>
+
+		<!-- ProductsOverview Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{i18n>FirstPageName}"/>
+				</f:heading>
+				<f:breadcrumbs>
+					<Breadcrumbs>
+						<Link text="{i18n>FirstPageName}"/>
+					</Breadcrumbs>
+				</f:breadcrumbs>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<!-- ProductsOverview Header -->
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<f:content>
+					<fb:FilterBar id="filterbar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="false" showClearOnFB="false" showFilterConfiguration="false">
+						<fb:filterItems>
+							<fb:FilterItem name="A" label="{i18n>Name}">
+								<fb:control>
+									<Input placeholder="Enter value..." valueLiveUpdate="true" liveChange="handleLiveChangeName"/>
+								</fb:control>
+							</fb:FilterItem>
+
+							<fb:FilterItem name="B" label="{i18n>Price}">
+								<fb:control>
+									<CheckBox text="More 500" selected="{appView>/statusRadioButton}"/>
+								</fb:control>
+							</fb:FilterItem>
+
+							<fb:FilterItem name="C" label="Suplliers">
+								<fb:control>
+									<MultiComboBox selectionChange="handleSelectionChange" selectionFinish="handleSelectionFinish" items="{appView>/Products}">
+										<core:Item key="{appView>ID}" text="{appView>Supplier}"/>
+									</MultiComboBox>
+								</fb:control>
+							</fb:FilterItem>
+
+							<fb:FilterItem name="D" label="Categories">
+								<fb:control>
+									<Input id="input" showValueHelp="true" valueHelpOnly="true" suggestionItems="Name">
+										<core:Item key="{}"/>
+									</Input>
+								</fb:control>
+							</fb:FilterItem>
+
+							<fb:FilterItem name="E" label="{i18n>Rating}:">
+								<fb:control>
+									<RatingIndicator id="Rating" maxValue="5" class="sapUiSmallMarginBegin" value="{}" tooltip="Rating Tooltip" />
+								</fb:control>
+							</fb:FilterItem>
+
+						</fb:filterItems>
+					</fb:FilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+
+		<!-- ProductsOverview List -->
+		<f:content>
+			<Table id="ProductsTable" sticky="HeaderToolbar,ColumnHeaders" inset="false" width="auto" mode="MultiSelect" items="{appView>/Products}">
+				<headerToolbar>
+					<Toolbar class="sapUiMediumMarginTop">
+						<Title text="{i18n>Products}" level="H2"/>
+						<ToolbarSpacer/>
+						<Button type="Accept" icon="sap-icon://add" text="{i18n>ByttonCreate}" press="onCreateElementPress('Products')"/>
+						<Button type="Ghost" icon="sap-icon://edit" text="{i18n>ByttonCreate}" press="onCreateElementPress('Stores')" enabled="false"/>
+						<Button type="Reject" icon="sap-icon://delete" text="{i18n>ByttonCreate}" press="onCreateElementPress('Stores')" enabled="false"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<HBox alignItems="Center">
+							<Button type="Transparent" icon="sap-icon://sort" press="onSortButtonPress('Name')"/>
+							<Text text="{i18n>Name}"/>
+						</HBox>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<HBox alignItems="Center">
+							<Button type="Transparent" icon="sap-icon://sort" press="onSortButtonPress('Description')"/>
+							<Text text="Description"/>
+						</HBox>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<HBox alignItems="Center">
+							<Button type="Transparent" icon="sap-icon://sort" press="onSortButtonPress('Price')"/>
+							<Text text="{i18n>Price}"/>
+						</HBox>
+					</Column>
+					<Column minScreenWidth="1100px">
+						<HBox alignItems="Center">
+							<Button type="Transparent" icon="sap-icon://sort" press="onSortButtonPress('ReleaseDate')"/>
+							<Text text="Release Date"/>
+						</HBox>
+					</Column>
+					<Column minScreenWidth="1100px">
+						<HBox alignItems="Center">
+							<Button type="Transparent" icon="sap-icon://sort" press="onSortButtonPress('DiscontinuedDate')"/>
+							<Text text="Discontinued Date"/>
+						</HBox>
+					</Column>
+					<Column minScreenWidth="1100px">
+						<HBox alignItems="Center">
+							<Button type="Transparent" icon="sap-icon://sort" press="onSortButtonPress('Supplier')"/>
+							<Text text="Supplier"/>
+						</HBox>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<HBox alignItems="Center">
+							<Button type="Transparent" icon="sap-icon://sort" press="onSortButtonPress('Rating')"/>
+							<Text text="{i18n>Rating}"/>
+						</HBox>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+					</Column>
+				</columns>
+
+				<items>
+					<ColumnListItem type="Active" press="onStorePress">
+						<Text maxLines="1" text="{appView>Name}"/>
+						<Text maxLines="1" text="{appView>Description}"/>
+						<Text maxLines="1" text="{appView>Price}"/>
+						<Text maxLines="1" text="{appView>ReleaseDate}"/>
+						<Text maxLines="1" text="{appView>DiscontinuedDate}"/>
+						<Text maxLines="1" text="{appView>Supplier}"/>
+						<RatingIndicator enabled="false" maxValue="5" class="sapUiSmallMarginBottom" value="{appView>Rating}" tooltip="Rating Product" />
+						<HBox>
+							<Button type="Transparent" enabled="false" icon="sap-icon://slim-arrow-right" class="sapUiMediumMarginBegin"/>
+						</HBox>
+					</ColumnListItem>
+
+				</items>
+			</Table>
+		</f:content>
+
+	</f:DynamicPage>
+</mvc:View>

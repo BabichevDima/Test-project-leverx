@@ -1,0 +1,56 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>PopupStoreTitle}">
+		<f:SimpleForm maxContainerCols="1" layout="ResponsiveGridLayout" labelSpanL="12" labelSpanM="12" emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1">
+			<f:content>
+				<Label text="{i18n>Name}"/>
+				<Input value="{path: 'Name',
+								type: 'sap.ui.model.type.String',
+								constraints: {	search: '^[A-Za-zА-Яа-яЁё\\s]+$',
+												minLength: 3,
+												maxLength: 10}}" placeholder="{i18n>PlaceholderFieldName}" required="true"/>
+
+				<Label text="{i18n>Email}"/>
+				<Input value="{path: 'Email',
+								type: 'sap.ui.model.type.String',
+								constraints: {
+												minLength: 3,
+												maxLength: 10,
+												contains: '@'}}" type="Email" placeholder="{i18n>PlaceholderFieldEmail}" required="true"/>
+
+				<Label text="{i18n>PhoneNumber}"/>
+				<Input value="{path: 'PhoneNumber',
+								type: 'sap.ui.model.type.String',
+								constraints: {	
+												minLength: 9,
+												maxLength: 17}}" type="Tel" placeholder="{i18n>PlaceholderFieldPhone}" required="true"/>
+
+				<Label text="{i18n>Address}"/>
+				<Input value="{path: 'Address',
+								type: 'sap.ui.model.type.String',
+								constraints: {
+												minLength: 3,
+												maxLength: 10}}" placeholder="{i18n>PlaceholderFieldAddress}" required="true"/>
+
+				<Label text="{i18n>Established}"/>
+				<DateTimePicker value="{
+										path: 'Established',
+										type: 'sap.ui.model.type.DateTime'}" required="true"/>
+
+				<Label text="{i18n>FloorArea}"/>
+				<Input value="{
+					path: 'FloorArea',
+					type: 'sap.ui.model.type.Float',
+					formatOptions: {decimals: 1},
+					constraints: {	minimum: 1,
+									maximum: 100000000}}" placeholder="{i18n>PlaceholderFieldFloorArea}" required="true"/>
+			</f:content>
+		</f:SimpleForm>
+
+		<buttons>
+			<Button text="{i18n>ByttonCreate}" press="onDialogCreatePress('Stores')" />
+			<Button text="{i18n>ButtonClose}" press="onDialogClosePress" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
