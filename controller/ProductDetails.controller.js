@@ -19,7 +19,7 @@ sap.ui.define(
   ) {
     'use strict';
 
-    return BaseController.extend('dmitry.babichev.controller.StoreDetails', {
+    return BaseController.extend('dmitry.babichev.controller.ProductDetails', {
       /**
 			 * Controller's "init" lifecycle method.
 			 */
@@ -28,7 +28,7 @@ sap.ui.define(
         this._setAppViewModel();
         this.getOwnerComponent()
           .getRouter()
-          .getRoute('StoreDetails')
+          .getRoute('ProductDetails')
           .attachPatternMatched(this._onPatternMatched, this);
       },
 

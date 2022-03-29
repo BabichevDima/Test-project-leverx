@@ -70,7 +70,7 @@ sap.ui.define(
           .getSource()
           .getBindingContext("appView")
           .getObject("ID");
-        this.navigate("StoreDetails", { storeId: nStoreId });
+        this.navigate("ProductDetails", { storeId: nStoreId });
       },
 
       /**

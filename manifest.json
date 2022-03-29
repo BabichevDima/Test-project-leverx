@@ -47,12 +47,7 @@
           "target": ["productsOverview"]
         },
         {
-          "pattern": "storeDetails/{storeId}",
-          "name": "StoreDetails",
-          "target": ["storeDetails"]
-        },
-        {
-          "pattern": "storeDetails/{storeId}/productDetails/{productId}",
+          "pattern": "productDetails/{storeId}",
           "name": "ProductDetails",
           "target": ["productDetails"]
         }
@@ -64,17 +59,11 @@
           "viewId": "productsOverview",
           "viewLevel": 1
         },
-        "storeDetails": {
-          "viewName": "StoreDetails",
-          "viewId": "storeDetails",
-          "viewLevel": 2
-        },
         "productDetails": {
           "viewName": "ProductDetails",
           "viewId": "productDetails",
-          "viewLevel": 3
+          "viewLevel": 2
         },
-
         "notFound": {
           "viewName": "NotFound",
           "viewId": "notFound"

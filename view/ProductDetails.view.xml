@@ -1,4 +1,4 @@
-<mvc:View controllerName="dmitry.babichev.controller.StoreDetails"
+<mvc:View controllerName="dmitry.babichev.controller.ProductDetails"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m"
 	xmlns:f="sap.f"
