@@ -65,12 +65,12 @@ sap.ui.define(
        * @param {sap.ui.base.Event} oEvent event object
        *
        */
-      onStorePress: function (oEvent) {
-        var nStoreId = oEvent
+      onProductPress: function (oEvent) {
+        var nProductId = oEvent
           .getSource()
           .getBindingContext("appView")
           .getObject("ID");
-        this.navigate("ProductDetails", { storeId: nStoreId });
+        this.navigate("ProductDetails", { productId: nProductId });
       },
 
       /**

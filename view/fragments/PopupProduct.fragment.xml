@@ -10,9 +10,6 @@
 				<Label text="Description" required="true"/>
 				<Input placeholder="Enter Description..." class="sapUiTinyMarginEnd"/>
 
-				<Label text="{i18n>Specs}"/>
-				<Input placeholder="{i18n>PlaceholderFieldSpecs}" required="true"/>
-
 				<Label text="Release Date"/>
 				<DateTimePicker value="{
 										path: 'ReleaseDate',

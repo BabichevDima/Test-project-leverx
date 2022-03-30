@@ -14,7 +14,7 @@
 				</f:heading>
 				<f:breadcrumbs>
 					<Breadcrumbs>
-						<Link text="{i18n>FirstPageName}" press="onNavToStoresOverview"/>
+						<Link text="{i18n>FirstPageName}" press="onNavToProductsOverview"/>
 						<Link text="{i18n>SecondPageName}" press="onNavToStoreDetails"/>
 						<Link text="{i18n>TherdPage}"/>
 					</Breadcrumbs>

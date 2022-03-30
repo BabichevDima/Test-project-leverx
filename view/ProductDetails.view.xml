@@ -13,10 +13,14 @@
 				</f:heading>
 				<f:breadcrumbs>
 					<Breadcrumbs>
-						<Link text="{i18n>FirstPageName}" press="onNavToStoresOverview"/>
+						<Link text="{i18n>FirstPageName}" press="onNavToProductsOverview"/>
 						<Link text="{i18n>SecondPageName}" />
 					</Breadcrumbs>
 				</f:breadcrumbs>
+				<f:actions>
+					<Button text="Edit" type="Ghost" press=""/>
+					<Button text="Delete" type="Reject" press=""/>
+				</f:actions>
 			</f:DynamicPageTitle>
 		</f:title>
 
@@ -63,7 +67,7 @@
 					<IconTabFilter icon="sap-icon://warning" iconColor="Negative" count="{appView>/out_of_stockProductsCount}" text="{i18n>StatusButtonOut_of_stock}" key="OUT_OF_STOCK" />
 				</items>
 				<content>
-					<Table id="ProductsTable" sticky="HeaderToolbar,ColumnHeaders" inset="false" items="{oData>rel_Products}" width="auto">
+					<Table id="ProductsTable" sticky="HeaderToolbar,ColumnHeaders" inset="false" items="" width="auto" mode="MultiSelect">
 						<headerToolbar>
 							<Toolbar class="sapUiMediumMarginTop">
 								<Title text="{i18n>Products}" level="H2"/>
@@ -72,80 +76,17 @@
 							</Toolbar>
 						</headerToolbar>
 						<columns>
-							<Column width="12em">
+							<Column minScreenWidth="Tablet" demandPopin="true">
 								<HBox alignItems="Center">
-									<Button type="Transparent"
-											icon="sap-icon://{appView>/sortType/Name}"
-											press="onSortButtonPress('Name')"/>
+									<Button type="Transparent" icon="sap-icon://{appView>/sortType/Name}" press="onSortButtonPress('Name')"/>
 									<Text text="{i18n>Name}"/>
 								</HBox>
-							</Column>
-							<Column minScreenWidth="Tablet" demandPopin="true">
-								<HBox alignItems="Center">
-									<Button	type="Transparent"
-											icon="sap-icon://{appView>/sortType/Price}"
-											press="onSortButtonPress('Price')"/>
-									<Text text="{i18n>Price}"/>
-								</HBox>
-							</Column>
-							<Column minScreenWidth="Tablet" demandPopin="true">
-								<HBox alignItems="Center">
-									<Button type="Transparent"
-											icon="sap-icon://{appView>/sortType/Specs}"
-											press="onSortButtonPress('Specs')"/>
-									<Text text="{i18n>Specs}"/>
-								</HBox>
-							</Column>
-							<Column minScreenWidth="1100px">
-								<HBox alignItems="Center">
-									<Button type="Transparent"
-											icon="sap-icon://{appView>/sortType/SupplierInfo}"
-											press="onSortButtonPress('SupplierInfo')"/>
-									<Text text="{i18n>SupplierInfo}"/>
-								</HBox>
-							</Column>
-							<Column minScreenWidth="1100px">
-								<HBox alignItems="Center">
-									<Button type="Transparent"
-											icon="sap-icon://{appView>/sortType/MadeIn}"
-											press="onSortButtonPress('MadeIn')"/>
-									<Text text="{i18n>MadeIn}"/>
-								</HBox>
-							</Column>
-							<Column minScreenWidth="1200px">
-								<HBox alignItems="Center">
-									<Button type="Transparent"
-											icon="sap-icon://{appView>/sortType/ProductionCompanyName}"
-											press="onSortButtonPress('ProductionCompanyName')"/>
-									<Text text="{i18n>ProductionCompanyName}"/>
-								</HBox>
-							</Column>
-							<Column minScreenWidth="Tablet" demandPopin="true">
-								<HBox alignItems="Center">
-									<Button type="Transparent"
-											icon="sap-icon://{appView>/sortType/Rating}"
-											press="onSortButtonPress('Rating')"/>
-									<Text text="{i18n>Rating}"/>
-								</HBox>
-							</Column>
-							<Column minScreenWidth="Tablet" demandPopin="true">
 							</Column>
 						</columns>
 
 						<items>
 							<ColumnListItem type="Active" press="onNavProductDetailsPress">
-								<Text maxLines="1" text="{oData>Name}"/>
-								<Text maxLines="1" text="{oData>Price}"/>
-								<Text maxLines="1" text="{oData>Specs}"/>
-								<Text maxLines="1" text="{oData>SupplierInfo}"/>
-								<Text maxLines="1" text="{oData>MadeIn}"/>
-								<Text maxLines="1" text="{oData>ProductionCompanyName}"/>
-								<RatingIndicator enabled="false" maxValue="5" class="sapUiSmallMarginBottom" value="{oData>Rating}" tooltip="Rating Product" />
-								<HBox>
-									<Button type="Transparent" icon="sap-icon://edit" press="onEditProductButtonPress"/>
-									<Button type="Transparent" icon="sap-icon://sys-cancel" press="onDeleteButtonPress($event, 'Products')"/>
-									<Button type="Transparent" enabled="false" icon="sap-icon://slim-arrow-right" class="sapUiMediumMarginBegin"/>
-								</HBox>
+								<Text maxLines="1" text="ddd"/>
 							</ColumnListItem>
 						</items>
 					</Table>

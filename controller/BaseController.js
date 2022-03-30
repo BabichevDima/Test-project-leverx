@@ -35,7 +35,7 @@ sap.ui.define(
       /**
 			 * Open stores overview page button press event handler.
 			 */
-      onNavToStoresOverview: function() {
+      onNavToProductsOverview: function() {
         this.navigate('ProductsOverview');
       },
 
@@ -102,7 +102,7 @@ sap.ui.define(
         });
 
         if (query === 'Stores') {
-          this.onNavToStoresOverview();
+          this.onNavToProductsOverview();
         }
       },
 

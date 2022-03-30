@@ -75,8 +75,8 @@
 						<Title text="{i18n>Products}" level="H2"/>
 						<ToolbarSpacer/>
 						<Button type="Accept" icon="sap-icon://add" text="{i18n>ByttonCreate}" press="onCreateElementPress('Products')"/>
-						<Button type="Ghost" icon="sap-icon://edit" text="{i18n>ByttonCreate}" press="onCreateElementPress('Stores')" enabled="false"/>
-						<Button type="Reject" icon="sap-icon://delete" text="{i18n>ByttonCreate}" press="onCreateElementPress('Stores')" enabled="false"/>
+						<Button type="Ghost" icon="sap-icon://edit" text="{i18n>ByttonEdit}" press="onCreateElementPress('Stores')" enabled="false"/>
+						<Button type="Reject" icon="sap-icon://delete" text="{i18n>ByttonDelete}" press="onCreateElementPress('Stores')" enabled="false"/>
 					</Toolbar>
 				</headerToolbar>
 				<columns>
@@ -127,7 +127,7 @@
 				</columns>
 
 				<items>
-					<ColumnListItem type="Active" press="onStorePress">
+					<ColumnListItem type="Active" press="onProductPress">
 						<Text maxLines="1" text="{appView>Name}"/>
 						<Text maxLines="1" text="{appView>Description}"/>
 						<Text maxLines="1" text="{appView>Price}"/>
