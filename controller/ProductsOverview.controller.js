@@ -65,13 +65,31 @@ sap.ui.define(
        * @param {sap.ui.base.Event} oEvent event object
        *
        */
+      // onProductPress: function (oEvent) {
+      //   var nProductId = oEvent.getSource().getBindingContext("appView").getObject("ID");
+      //   this.navigate("ProductDetails", { productId: nProductId });
+      // },
+
       onProductPress: function (oEvent) {
-        var nProductId = oEvent
-          .getSource()
-          .getBindingContext("appView")
-          .getObject("ID");
-        this.navigate("ProductDetails", { productId: nProductId });
+        var oSource = oEvent.getSource();
+				var oCtx = oSource.getBindingContext("appView");
+        var oDataModel = oCtx.getObject();
+
+        var nProductId = oEvent.getSource().getBindingContext("appView").getObject("ID");
+        this.getOwnerComponent().getRouter().navTo("ProductDetails", { productId: nProductId });
+
+        this.getOwnerComponent().setBindingContext(oCtx);
       },
+
+      // onOpenSupplierPagePress: function (oEvent) {
+			// 	var oSource = oEvent.getSource();
+			// 	var oCtx = oSource.getBindingContext("odata");
+			// 	var oComponent = this.getOwnerComponent();
+
+			// 	oComponent.getRouter().navTo("SecondPage", {
+			// 		SupplierID: oCtx.getObject("ID")
+			// 	});
+			// },
 
       /**
        *

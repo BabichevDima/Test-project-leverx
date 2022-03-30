@@ -32,6 +32,9 @@
 						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
 							<Label design="Bold" text="{i18n>Email}:" class="sapUiTinyMarginEnd"/>
 							<Text text="{appViewSort>/sortType/Name}"/>
+							<Text text="{appView>Name}"/>
+							<Text text="{appView>/Name}"/>
+							<Text text="{Name}"/>
 						</FlexBox>
 						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
 							<Label design="Bold" text="{i18n>PhoneNumber}:" class="sapUiTinyMarginEnd"/>

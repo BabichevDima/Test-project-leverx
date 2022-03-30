@@ -30,8 +30,6 @@ sap.ui.define(
           .getRouter()
           .getRoute("ProductDetails")
           .attachPatternMatched(this._onPatternMatched, this);
-
-        console.log(this.getView().getModel("appView"));
       },
 
       /**
