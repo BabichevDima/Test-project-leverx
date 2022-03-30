@@ -3,9 +3,9 @@
 	xmlns="sap.m"
 	xmlns:f="sap.f"
 	xmlns:layout="sap.ui.layout" height="100%">
-	<f:DynamicPage showFooter="true" class="sapUiNoContentPadding">
+	<f:DynamicPage class="sapUiNoContentPadding">
 
-		<!-- StoreDetails Title -->
+		<!-- ProductDetails Title -->
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
@@ -14,7 +14,7 @@
 				<f:breadcrumbs>
 					<Breadcrumbs>
 						<Link text="{i18n>FirstPageName}" press="onNavToProductsOverview"/>
-						<Link text="{i18n>SecondPageName}" />
+						<Link text="{i18n>SecondPageName}"/>
 					</Breadcrumbs>
 				</f:breadcrumbs>
 				<f:actions>
@@ -24,83 +24,77 @@
 			</f:DynamicPageTitle>
 		</f:title>
 
-		<!-- StoreDetails Header -->
+		<!-- ProductDetails Header -->
 		<f:header>
 			<f:DynamicPageHeader pinnable="true">
 				<layout:HorizontalLayout allowWrapping="true">
 					<layout:VerticalLayout class="sapUiMediumMarginEnd">
 						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
 							<Label design="Bold" text="{i18n>Email}:" class="sapUiTinyMarginEnd"/>
-							<Text text="{oData>Email}"/>
+							<Text text="{appViewSort>/sortType/Name}"/>
 						</FlexBox>
 						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
 							<Label design="Bold" text="{i18n>PhoneNumber}:" class="sapUiTinyMarginEnd"/>
-							<Text text="{oData>PhoneNumber}"/>
+							<Text text="{}"/>
 						</FlexBox>
 						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
 							<Label design="Bold" text="{i18n>Address}:" class="sapUiTinyMarginEnd"/>
-							<Text text="{oData>Address}"/>
+							<Text text="sdsd d s gdf df g fd"/>
 						</FlexBox>
 					</layout:VerticalLayout>
 					<layout:VerticalLayout>
 						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
 							<Label design="Bold" text="{i18n>Established}:" class="sapUiTinyMarginEnd"/>
-							<Text text="{ path: 'oData>Established', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd MMM YYYY'}}"/>
+							<Text text="{ path: '', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd MMM YYYY'}}"/>
 						</FlexBox>
 						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
 							<Label design="Bold" text="{i18n>FloorArea}:" class="sapUiTinyMarginEnd"/>
-							<Text text="{oData>FloorArea}"/>
+							<Text text="{}"/>
 						</FlexBox>
 					</layout:VerticalLayout>
 				</layout:HorizontalLayout>
 			</f:DynamicPageHeader>
 		</f:header>
 
-		<!-- StoreDetails Content -->
+		<!-- ProductDetails Content -->
 		<f:content>
-			<IconTabBar select=".onFilterSelect" class="sapUiResponsiveContentPadding">
-				<items>
-					<IconTabFilter showAll="true" count="{appView>/allProductsCount}" text="{i18n>Products}" key="ALL" />
-					<IconTabSeparator/>
-					<IconTabFilter icon="sap-icon://message-success" iconColor="Positive" count="{appView>/okProductsCount}" text="{i18n>StatusButtonOk}" key="OK" />
-					<IconTabFilter icon="sap-icon://message-warning" iconColor="Critical" count="{appView>/storageProductsCount}" text="{i18n>StatusButtonStorage}" key="STORAGE" />
-					<IconTabFilter icon="sap-icon://warning" iconColor="Negative" count="{appView>/out_of_stockProductsCount}" text="{i18n>StatusButtonOut_of_stock}" key="OUT_OF_STOCK" />
-				</items>
-				<content>
-					<Table id="ProductsTable" sticky="HeaderToolbar,ColumnHeaders" inset="false" items="" width="auto" mode="MultiSelect">
-						<headerToolbar>
-							<Toolbar class="sapUiMediumMarginTop">
-								<Title text="{i18n>Products}" level="H2"/>
-								<ToolbarSpacer/>
-								<SearchField search="onProductSearch" placeholder="{i18n>PlaceholderSerchProduct}" width="300px" showRefreshButton='true'/>
-							</Toolbar>
-						</headerToolbar>
-						<columns>
-							<Column minScreenWidth="Tablet" demandPopin="true">
-								<HBox alignItems="Center">
-									<Button type="Transparent" icon="sap-icon://{appView>/sortType/Name}" press="onSortButtonPress('Name')"/>
-									<Text text="{i18n>Name}"/>
-								</HBox>
-							</Column>
-						</columns>
+			<Table id="ProductsTable" sticky="HeaderToolbar,ColumnHeaders" inset="false" width="auto" mode="MultiSelect">
+				<headerToolbar>
+					<Toolbar class="sapUiMediumMarginTop">
+						<Title text="Categories" level="H2"/>
+						<ToolbarSpacer/>
+						<SearchField search="onProductSearch" placeholder="{i18n>PlaceholderSerchProduct}" width="300px"/>
+						<Button type="Accept" icon="sap-icon://add" text="{i18n>ByttonAdd}" press="onCreateElementPress('Products')"/>
+						<Button type="Reject" icon="sap-icon://delete" text="{i18n>ByttonRemove}" press="" enabled="false" class="sapUiSmallMarginBeginEnd"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<HBox alignItems="Center">
+							<Button type="Transparent" icon="sap-icon://{appViewSort>/sortType/Name}" press="onSortButtonPress('Name')"/>
+							<Text text="{i18n>Name}"/>
+						</HBox>
+					</Column>
+				</columns>
 
-						<items>
-							<ColumnListItem type="Active" press="onNavProductDetailsPress">
-								<Text maxLines="1" text="ddd"/>
-							</ColumnListItem>
-						</items>
-					</Table>
-				</content>
-			</IconTabBar>
+				<items>
+					<ColumnListItem type="Active" press="onNavProductDetailsPress">
+						<HBox>
+							<Text maxLines="1" text="qwewqewqewqeqwe wqewq ewqe wqe "/>
+							<ToolbarSpacer/>
+							<Button type="Transparent" enabled="false" icon="sap-icon://slim-arrow-right"/>
+						</HBox>
+					</ColumnListItem>
+					<ColumnListItem type="Active" press="onNavProductDetailsPress">
+						<HBox>
+							<Text maxLines="1" text="dfdfwewewrwe"/>
+							<ToolbarSpacer/>
+							<Button type="Transparent" enabled="false" icon="sap-icon://slim-arrow-right"/>
+						</HBox>
+					</ColumnListItem>
+				</items>
+			</Table>
 		</f:content>
 
-		<!-- StoreDetails Footer -->
-		<f:footer>
-			<OverflowToolbar>
-				<ToolbarSpacer/>
-				<Button type="Accept" icon="sap-icon://add" text="{i18n>ByttonCreate}" press="onCreateElementPress('Products')"/>
-				<Button type="Reject" icon="sap-icon://delete" text="{i18n>ByttonDelete}" press="onDeleteButtonPress($event, 'Stores')"/>
-			</OverflowToolbar>
-		</f:footer>
 	</f:DynamicPage>
 </mvc:View>
