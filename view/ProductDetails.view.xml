@@ -31,10 +31,7 @@
 					<layout:VerticalLayout class="sapUiMediumMarginEnd">
 						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
 							<Label design="Bold" text="{i18n>Email}:" class="sapUiTinyMarginEnd"/>
-							<Text text="{appViewSort>/sortType/Name}"/>
 							<Text text="{appView>Name}"/>
-							<Text text="{appView>/Name}"/>
-							<Text text="{Name}"/>
 						</FlexBox>
 						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
 							<Label design="Bold" text="{i18n>PhoneNumber}:" class="sapUiTinyMarginEnd"/>
@@ -61,7 +58,7 @@
 
 		<!-- ProductDetails Content -->
 		<f:content>
-			<Table id="ProductsTable" sticky="HeaderToolbar,ColumnHeaders" inset="false" width="auto" mode="MultiSelect">
+			<Table id="ProductsTable" sticky="HeaderToolbar,ColumnHeaders" inset="false" width="auto" mode="MultiSelect" items="{appView>Categories}">
 				<headerToolbar>
 					<Toolbar class="sapUiMediumMarginTop">
 						<Title text="Categories" level="H2"/>
@@ -83,14 +80,7 @@
 				<items>
 					<ColumnListItem type="Active" press="onNavProductDetailsPress">
 						<HBox>
-							<Text maxLines="1" text="qwewqewqewqeqwe wqewq ewqe wqe "/>
-							<ToolbarSpacer/>
-							<Button type="Transparent" enabled="false" icon="sap-icon://slim-arrow-right"/>
-						</HBox>
-					</ColumnListItem>
-					<ColumnListItem type="Active" press="onNavProductDetailsPress">
-						<HBox>
-							<Text maxLines="1" text="dfdfwewewrwe"/>
+							<Text maxLines="1" text="{appView>Name}"/>
 							<ToolbarSpacer/>
 							<Button type="Transparent" enabled="false" icon="sap-icon://slim-arrow-right"/>
 						</HBox>

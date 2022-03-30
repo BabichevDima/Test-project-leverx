@@ -82,43 +82,43 @@
 				<columns>
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<HBox alignItems="Center">
-							<Button type="Transparent" icon="sap-icon://sort" press="onSortButtonPress('Name')"/>
+							<Button type="Transparent" icon="sap-icon://{appViewSort>/sortType/Name}" press="onSortButtonPress('Name')"/>
 							<Text text="{i18n>Name}"/>
 						</HBox>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<HBox alignItems="Center">
-							<Button type="Transparent" icon="sap-icon://sort" press="onSortButtonPress('Description')"/>
+							<Button type="Transparent" icon="sap-icon://{appViewSort>/sortType/Description}" press="onSortButtonPress('Description')"/>
 							<Text text="Description"/>
 						</HBox>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<HBox alignItems="Center">
-							<Button type="Transparent" icon="sap-icon://sort" press="onSortButtonPress('Price')"/>
+							<Button type="Transparent" icon="sap-icon://{appViewSort>/sortType/Price}" press="onSortButtonPress('Price')"/>
 							<Text text="{i18n>Price}"/>
 						</HBox>
 					</Column>
 					<Column minScreenWidth="1100px">
 						<HBox alignItems="Center">
-							<Button type="Transparent" icon="sap-icon://sort" press="onSortButtonPress('ReleaseDate')"/>
+							<Button type="Transparent" icon="sap-icon://{appViewSort>/sortType/ReleaseDate}" press="onSortButtonPress('ReleaseDate')"/>
 							<Text text="Release Date"/>
 						</HBox>
 					</Column>
 					<Column minScreenWidth="1100px">
 						<HBox alignItems="Center">
-							<Button type="Transparent" icon="sap-icon://sort" press="onSortButtonPress('DiscontinuedDate')"/>
+							<Button type="Transparent" icon="sap-icon://{appViewSort>/sortType/DiscontinuedDate}" press="onSortButtonPress('DiscontinuedDate')"/>
 							<Text text="Discontinued Date"/>
 						</HBox>
 					</Column>
 					<Column minScreenWidth="1100px">
 						<HBox alignItems="Center">
-							<Button type="Transparent" icon="sap-icon://sort" press="onSortButtonPress('Supplier')"/>
+							<Button type="Transparent" icon="sap-icon://{appViewSort>/sortType/Supplier}" press="onSortButtonPress('Supplier')"/>
 							<Text text="Supplier"/>
 						</HBox>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<HBox alignItems="Center">
-							<Button type="Transparent" icon="sap-icon://sort" press="onSortButtonPress('Rating')"/>
+							<Button type="Transparent" icon="sap-icon://{appViewSort>/sortType/Rating}" press="onSortButtonPress('Rating')"/>
 							<Text text="{i18n>Rating}"/>
 						</HBox>
 					</Column>

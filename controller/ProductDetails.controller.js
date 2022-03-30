@@ -75,70 +75,28 @@ sap.ui.define(
        *
        * @param {sap.ui.base.Event} oEvent event object.
        */
-      _onPatternMatched: function(oEvent) {
-        // var that = this;
-        // var oODataModel = this.getView().getModel('oData');
-        // this.sStoreId = oEvent.getParameter('arguments').storeId;
+      _onPatternMatched: function (oEvent) {
+        var sProductId  = +oEvent.getParameter("arguments").productId;
+        var oAppView    = this.getView().getModel("appView");
+        var aObject     = oAppView.getProperty("/Products");
+        var object      = aObject.findIndex(elem => elem.ID == sProductId);
 
-        // oODataModel.metadataLoaded().then(function() {
-        //   var sKey = oODataModel.createKey('/Stores', { id: that.sStoreId });
-
-        //   that.getView().bindObject({
-        //     path: sKey,
-        //     model: 'oData',
-        //     mode: 'TwoWay'
-        //   });
-        // });
-
-        // this.getView().setModel(oODataModel, 'oData');
+        this.getView().bindElement({
+          path: `/Products/${object}`,
+          model: 'appView'
+        });
       },
 
-      /**
-       * Creates a "view" model to store some technical/configuration stuff locally on the view.
-       *
-       */
       _setAppViewModel: function () {
         var oAppViewModel = new JSONModel({
           activeStatusFilter: new Filter("Status", FilterOperator.Contains, ""),
           sortType: {
-            Name: 'sort'
-          }
+            Name: "sort",
+          },
         });
 
         this.getView().setModel(oAppViewModel, "appViewSort");
       },
-
-      /**
-       * Open product page button press event handler.
-       *
-       * @param {sap.ui.base.Event} oEvent event object
-       *
-       */
-      // onNavProductDetailsPress: function (oEvent) {
-      //   var nProductId = oEvent
-      //     .getSource()
-      //     .oBindingContexts.oData.getObject("id");
-
-      //   this.navigate("ProductDetails", {
-      //     storeId: this.sStoreId,
-      //     productId: nProductId,
-      //   });
-      // },
-
-      /**
-       * "Search products" event handler of the "navigation buttons".
-       *
-       * @param {sap.ui.base.Event} oEvent event object.
-       */
-      // onFilterSelect: function (oEvent) {
-      //   var oAppViewModel = this.getView().getModel("appView");
-      //   var oProductsTable = this.byId("ProductsTable");
-      //   var oItemsBinding = oProductsTable.getBinding("items");
-      //   var key = oEvent.getParameter("key") !== "ALL" ? oEvent.getParameter("key") : "";
-
-      //   oItemsBinding.filter(new Filter("Status", FilterOperator.Contains, key));
-      //   oAppViewModel.setProperty("/activeStatusFilter", oItemsBinding.getFilters("Control")[0]);
-      // },
 
       /**
        * "Search products" event handler of the "SearchField".

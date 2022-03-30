@@ -9,14 +9,11 @@
       "version": "1.0.0"
     },
     "dataSources": {
-      "mainService": {
-        "uri": "http://localhost:3000/odata/",
-        "type": "OData",
-        "settings": {
-          "odataVersion": "2.0"
-        }
-      }
-    }
+			"localData": {
+				"uri": "model/model.json",
+				"type": "JSON"
+			}
+		}
   },
   "sap.ui": {
     "deviceTypes": {
@@ -47,7 +44,7 @@
           "target": ["productsOverview"]
         },
         {
-          "pattern": "productDetails/{productId}/display",
+          "pattern": "productDetails/{productId}",
           "name": "ProductDetails",
           "target": ["productDetails"]
         }
@@ -84,15 +81,10 @@
           "bundleLocale": "en"
         }
       },
-      "oData": {
-        "dataSource": "mainService",
-        "settings": {
-          "defaultBindingMode": "TwoWay",
-          "defaultCountMode": "Inline",
-          "useBatch": false,
-          "disableHeadRequestForToken": true
-        }
-      }
+			"appView": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "localData"
+			}
     }
   }
 }
