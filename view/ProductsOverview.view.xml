@@ -35,7 +35,7 @@
 
 							<fb:FilterItem name="B" label="{i18n>Price}">
 								<fb:control>
-									<CheckBox text="More 500" selected="{appView>/statusRadioButton}"/>
+									<CheckBox text="More 500" selected="{appView>/statusRadioButton}" select="onSelectCheckBox"/>
 								</fb:control>
 							</fb:FilterItem>
 
@@ -49,7 +49,7 @@
 
 							<fb:FilterItem name="D" label="Categories">
 								<fb:control>
-									<Input id="input" showValueHelp="true" valueHelpOnly="true" suggestionItems="Name">
+									<Input id="input" showValueHelp="true" valueHelpOnly="true">
 										<core:Item key="{}"/>
 									</Input>
 								</fb:control>
@@ -57,7 +57,7 @@
 
 							<fb:FilterItem name="E" label="{i18n>Rating}:">
 								<fb:control>
-									<RatingIndicator id="Rating" maxValue="5" class="sapUiSmallMarginBegin" value="{}" tooltip="Rating Tooltip" />
+									<RatingIndicator change="onRatingChange" id="Rating" maxValue="5" class="sapUiSmallMarginBegin" value="{}" tooltip="Rating Tooltip" />
 								</fb:control>
 							</fb:FilterItem>
 
