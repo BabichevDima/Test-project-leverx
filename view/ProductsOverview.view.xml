@@ -35,13 +35,13 @@
 
 							<fb:FilterItem name="B" label="{i18n>Price}">
 								<fb:control>
-									<CheckBox text="More 500" selected="{appView>/statusRadioButton}" select="onSelectCheckBox"/>
+									<CheckBox text="More 500" selected="{appViewSort>/statusRadioButton}" select="onSelectCheckBox"/>
 								</fb:control>
 							</fb:FilterItem>
 
 							<fb:FilterItem name="C" label="Suplliers">
 								<fb:control>
-									<MultiComboBox selectionChange="handleSelectionChange" selectionFinish="handleSelectionFinish" items="{appView>/Products}">
+									<MultiComboBox selectionFinish="handleSelectionFinish" items="{appView>/Products}">
 										<core:Item key="{appView>ID}" text="{appView>Supplier}"/>
 									</MultiComboBox>
 								</fb:control>

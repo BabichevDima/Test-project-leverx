@@ -6,8 +6,9 @@ sap.ui.define(
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
     "sap/ui/model/Sorter",
+    'sap/ui/model/FilterType'
   ],
-  function (BaseController, Filter, FilterOperator, JSONModel, MessageToast, Sorter) {
+  function (BaseController, Filter, FilterOperator, JSONModel, MessageToast, Sorter, FilterType) {
     "use strict";
 
     return BaseController.extend(
@@ -64,7 +65,9 @@ sap.ui.define(
         // },
         _setAppViewModelSort: function () {
           var oAppViewModel = new JSONModel({
-            activeStatusFilter: new Filter("Status", FilterOperator.Contains, ""),
+            statusRadioButton: false,
+            activeStatusFilterOnName: new Filter("Name", FilterOperator.Contains, ""),
+            activeStatusFilterOnPrice: new Filter("Price", FilterOperator.GT, ""),
             sortType: {
               Name: "sort",
               Description: "sort",
@@ -116,53 +119,38 @@ sap.ui.define(
         },
 
         handleLiveChangeName: function (oEvent) {
-          var oProductsList = this.byId("ProductsTable");
-          var oItemsBinding = oProductsList.getBinding("items");
+          var oAppViewModel = this.getView().getModel('appViewSort');
           var sQuery        = oEvent.getParameter("value");
 
-          var oFilters = new Filter({
-            filters: [new Filter("Name", FilterOperator.Contains, sQuery)],
-            and: false,
-          });
+          oAppViewModel.setProperty('/activeStatusFilterOnName', new Filter("Name", FilterOperator.Contains, sQuery));
 
-          oItemsBinding.filter(oFilters);
+          this._jointFilter()
         },
 
         onSelectCheckBox: function () {
-          var oProductsList = this.byId("ProductsTable");
-          var oItemsBinding = oProductsList.getBinding("items");
-          var oAppViewModel = this.getView().getModel("appView");
+          var oAppViewModel = this.getView().getModel("appViewSort");
           var bStatusButton = oAppViewModel.getProperty("/statusRadioButton");
           var nQuery        = 500;
           var key           = bStatusButton ? nQuery : "";
 
-          var oFilters = new Filter({
-            filters: [new Filter("Price", FilterOperator.GT, key)],
-            and: false,
-          });
+          oAppViewModel.setProperty('/activeStatusFilterOnPrice', new Filter("Price", FilterOperator.GT, key));
 
-          oItemsBinding.filter(oFilters);
+          this._jointFilter()
         },
 
-        handleSelectionChange: function (oEvent) {
-          var changedItem = oEvent.getParameter("changedItem");
-          var isSelected  = oEvent.getParameter("selected");
+        _jointFilter: function(){
+          var oProductsList             = this.byId("ProductsTable");
+          var oItemsBinding             = oProductsList.getBinding("items");
+          var oAppViewModel             = this.getView().getModel("appViewSort");
+          var activeStatusFilterOnName  = oAppViewModel.getProperty('/activeStatusFilterOnName');
+          var activeStatusFilterOnPrice = oAppViewModel.getProperty('/activeStatusFilterOnPrice');
 
-          var state = "Selected";
-          if (!isSelected) {
-            state = "Deselected";
-          }
-
-          MessageToast.show(
-            "Event 'selectionChange': " +
-              state +
-              " '" +
-              changedItem.getText() +
-              "'",
-            {
-              width: "auto",
-            }
-          );
+          var jointFilter = new Filter({
+            filters: [activeStatusFilterOnName, activeStatusFilterOnPrice],
+            and: true
+          });
+  
+          oItemsBinding.filter(jointFilter, FilterType.Application);
         },
 
         handleSelectionFinish: function (oEvent) {
@@ -206,6 +194,9 @@ sap.ui.define(
           });
 
           oItemsBinding.filter(oFilters);
+
+
+          
         },
 
         onRatingChange: function (oEvent) {
