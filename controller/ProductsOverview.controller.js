@@ -6,9 +6,10 @@ sap.ui.define(
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
     "sap/ui/model/Sorter",
-    'sap/ui/model/FilterType'
+    "sap/ui/model/FilterType",
+    "sap/ui/core/Fragment",
   ],
-  function (BaseController, Filter, FilterOperator, JSONModel, MessageToast, Sorter, FilterType) {
+  function (BaseController, Filter, FilterOperator, JSONModel, MessageToast, Sorter, FilterType, Fragment) {
     "use strict";
 
     return BaseController.extend(
@@ -24,11 +25,12 @@ sap.ui.define(
 
         _setAppViewModelSort: function () {
           var oAppViewModel = new JSONModel({
-            statusRadioButton:            false,
-            activeStatusFilterOnName:     new Filter("Name", FilterOperator.Contains, ""),
-            activeStatusFilterOnPrice:    new Filter("Price", FilterOperator.GT, ""),
-            activeStatusFilterOnSupplier: [new Filter("Supplier", FilterOperator.Contains, "")],
-            activeStatusFilterOnRating:    [new Filter("Rating", FilterOperator.GT, "")],
+            statusRadioButton:              false,
+            activeStatusFilterOnName:       new Filter("Name", FilterOperator.Contains, ""),
+            activeStatusFilterOnPrice:      new Filter("Price", FilterOperator.GT, ""),
+            activeStatusFilterOnSupplier:   [new Filter("Supplier", FilterOperator.Contains, "")],
+            activeStatusFilterOnRating:     [new Filter("Rating", FilterOperator.GT, "")],
+            // activeStatusFilterOnCategories: new Filter("Categories/Name", FilterOperator.Contains, ""),
             sortType: {
               Name:             "sort",
               Description:      "sort",
@@ -167,28 +169,88 @@ sap.ui.define(
             });
           }
 
-
-
-          
-
-
-          // var jointFilter = new Filter({
-          //   filters: [activeStatusFilterOnName, activeStatusFilterOnPrice, ...activeStatusFilterOnRating],
-          //   and: true
-          // });
-
-          // var test = new Filter({
-          //   filters: [jointFilter, jointFilterSupplier],
-          //   and: true
-          // });
-
-  
           oItemsBinding.filter(jointFilter, FilterType.Application);
         },
 
         onDialogClosePress: function() {
           this.oDialog.close();
-        }
+        },
+
+        onValueHelpRequest: function (oEvent) {
+          var sInputValue = oEvent.getSource().getValue();
+          var oView       = this.getView();
+
+          if (!this._pValueHelpDialog) {
+            this._pValueHelpDialog = Fragment.load({
+              id: oView.getId(),
+              name: "dmitry.babichev.view.fragments.ValueHelpDialog",
+              controller: this
+            }).then(function (oDialog) {
+              oView.addDependent(oDialog);
+              return oDialog;
+            });
+          }
+          this._pValueHelpDialog.then(function(oDialog) {
+            oDialog.getBinding("items").filter([new Filter("Name", FilterOperator.Contains, sInputValue)]);
+            oDialog.open(sInputValue);
+          });
+        },
+
+        onValueHelpSearch: function (oEvent) {
+          var sValue  = oEvent.getParameter("value");
+          var oFilter = new Filter("Name", FilterOperator.Contains, sValue);
+    
+          oEvent.getSource().getBinding("items").filter([oFilter]);
+        },
+    
+        onValueHelpClose: function (oEvent) {
+          var oSelectedItem = oEvent.getParameter("selectedItem");
+          oEvent.getSource().getBinding("items").filter([]);
+    
+          if (!oSelectedItem) {
+            return;
+          }
+    
+          this.byId("productInput").setValue(oSelectedItem.getTitle());
+
+
+          var sValue        = this.byId("productInput").getValue();
+          var oProductsList = this.byId("ProductsTable");
+          var oItemsBinding = oProductsList.getBinding("items");
+
+
+          var oFilters = new Filter({
+            filters: [
+              new Filter('Categories/0/Name', FilterOperator.Contains, sValue),
+              new Filter('Categories/1/Name', FilterOperator.Contains, sValue),
+              new Filter('Categories/2/Name', FilterOperator.Contains, sValue),
+              new Filter('Categories/3/Name', FilterOperator.Contains, sValue),
+            ],
+            and: false
+          });
+
+          oItemsBinding.filter(oFilters)
+        },
+
+        handleLiveChangeCategories: function(oEvent){
+          var sQuery        = oEvent.getParameter("value");
+          var oProductsList = this.byId("ProductsTable");
+          var oItemsBinding = oProductsList.getBinding("items");
+
+
+          var oFilters = new Filter({
+            filters: [
+              new Filter('Categories/0/Name', FilterOperator.Contains, sQuery),
+              new Filter('Categories/1/Name', FilterOperator.Contains, sQuery),
+              new Filter('Categories/2/Name', FilterOperator.Contains, sQuery),
+              new Filter('Categories/3/Name', FilterOperator.Contains, sQuery),
+            ],
+            and: false
+          });
+
+          oItemsBinding.filter(oFilters)
+
+        },
       }
     );
   }

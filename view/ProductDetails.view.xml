@@ -27,39 +27,31 @@
 		<!-- ProductDetails Header -->
 		<f:header>
 			<f:DynamicPageHeader pinnable="true">
-				<layout:HorizontalLayout allowWrapping="true">
-					<layout:VerticalLayout class="sapUiMediumMarginEnd">
-						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
-							<Label design="Bold" text="{i18n>Name}:" class="sapUiTinyMarginEnd"/>
-							<Text text="{appView>Name}"/>
-						</FlexBox>
-						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
-							<Label design="Bold" text="{i18n>Description}:" class="sapUiTinyMarginEnd"/>
-							<Text text="{appView>Description}"/>
-						</FlexBox>
-					</layout:VerticalLayout>
 
-					<layout:VerticalLayout>
-						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
-							<Label design="Bold" text="Release Date:" class="sapUiTinyMarginEnd"/>
-							<Text text="{appView>ReleaseDate}"/>
-						</FlexBox>
-					</layout:VerticalLayout>
+				<layout:HorizontalLayout>
+					<HBox direction="Row" alignItems="Start" class="sapUiMediumMarginEnd">
+						<Label design="Bold" text="{i18n>Name}:" class="sapUiTinyMarginEnd sapUiTinyMarginTop"/>
+						<Text text="{appView>Name}" class="sapUiTinyMarginTop"/>
+					</HBox>
+					<HBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom sapUiMediumMarginEnd">
+						<Label design="Bold" text="Release Date:" class="sapUiTinyMarginEnd sapUiTinyMarginTop"/>
+						<Text text="{appView>ReleaseDate}" class="sapUiTinyMarginTop"/>
+					</HBox>
+					<HBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom sapUiMediumMarginEnd">
+						<Label design="Bold" text="Release Date:" class="sapUiTinyMarginEnd sapUiTinyMarginTop"/>
+						<Text text="{appView>ReleaseDate}" class="sapUiTinyMarginTop"/>
+					</HBox>
+					<HBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom sapUiMediumMarginEnd">
+						<Label design="Bold" text="Supplier:" class="sapUiTinyMarginEnd sapUiTinyMarginTop"/>
+						<Text text="{appView>Supplier}" class="sapUiTinyMarginTop"/>
+					</HBox>
+				</layout:HorizontalLayout>
 
-					<layout:VerticalLayout>
-						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
-							<Label design="Bold" text="Discontinued Date:" class="sapUiTinyMarginEnd"/>
-							<Text text="{appView>DiscontinuedDate}"/>
-						</FlexBox>
-					</layout:VerticalLayout>
-
-					<layout:VerticalLayout>
-						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
-							<Label design="Bold" text="Supplier:" class="sapUiTinyMarginEnd"/>
-							<Text text="{appView>Supplier}"/>
-						</FlexBox>
-					</layout:VerticalLayout>
-
+				<layout:HorizontalLayout>
+					<HBox direction="Row" alignItems="Start" class="sapUiMediumMarginEnd">
+						<Label design="Bold" text="{i18n>Description}:" class="sapUiTinyMarginEnd sapUiTinyMarginTop"/>
+						<Text text="{appView>Description}" class="sapUiTinyMarginTop"/>
+					</HBox>
 				</layout:HorizontalLayout>
 			</f:DynamicPageHeader>
 		</f:header>

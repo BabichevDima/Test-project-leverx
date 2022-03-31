@@ -1,4 +1,10 @@
 {
+  "Categories": [
+    { "Id": 0, "Name": "Electronic" },
+    { "Id": 1, "Name": "Headphones and headsets" },
+    { "Id": 2, "Name": "Accessories" },
+    { "Id": 3, "Name": "Console" }
+  ],
   "Products": [
     {
       "Categories": [
@@ -19,7 +25,6 @@
     {
       "Categories": [
         { "Id": 0, "Name": "Electronic" },
-        { "Id": 1, "Name": "Headphones and headsets" },
         { "Id": 3, "Name": "Console" }
       ],
       "ID": 2,
@@ -34,7 +39,6 @@
     },
     {
       "Categories": [
-        { "Id": 0, "Name": "Electronic" },
         { "Id": 1, "Name": "Headphones and headsets" },
         { "Id": 2, "Name": "Accessories" }
       ],
@@ -50,8 +54,6 @@
     },
     {
       "Categories": [
-        { "Id": 0, "Name": "Electronic" },
-        { "Id": 1, "Name": "Headphones and headsets" },
         { "Id": 2, "Name": "Accessories" }
       ],
       "ID": 4,
@@ -66,8 +68,6 @@
     },
     {
       "Categories": [
-        { "Id": 0, "Name": "Electronic" },
-        { "Id": 1, "Name": "Headphones and headsets" },
         { "Id": 3, "Name": "Console" }
       ],
       "ID": 5,

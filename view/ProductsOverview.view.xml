@@ -49,8 +49,18 @@
 
 							<fb:FilterItem name="D" label="Categories">
 								<fb:control>
-									<Input id="input" showValueHelp="true" valueHelpOnly="true">
-										<core:Item key="{}"/>
+									<Input
+											id="productInput"
+											placeholder="Enter product"
+											showSuggestion="true"
+											showValueHelp="true"
+											valueHelpRequest=".onValueHelpRequest"
+											suggestionItems="{appView>/Categories}"
+											valueLiveUpdate="true"
+											liveChange="handleLiveChangeCategories">
+										<suggestionItems>
+											<core:Item text="{appView>Name}" />
+										</suggestionItems>
 									</Input>
 								</fb:control>
 							</fb:FilterItem>
