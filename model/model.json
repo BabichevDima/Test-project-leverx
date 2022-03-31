@@ -44,8 +44,72 @@
       "ReleaseDate": "1868-12-14",
       "DiscontinuedDate": "1789-04-09",
       "Rating": 4,
+      "Price": 400,
+      "Supplier": "aaa",
+      "ProductDetail": ""
+    },
+    {
+      "Categories": [
+        { "Id": 0, "Name": "Electronic" },
+        { "Id": 1, "Name": "Headphones and headsets" },
+        { "Id": 2, "Name": "Accessories" }
+      ],
+      "ID": 4,
+      "Name": "YS inPods Pro Headphones",
+      "Description": "The main element",
+      "ReleaseDate": "1992-01-01",
+      "DiscontinuedDate": "2000-01-01",
+      "Rating": 3,
+      "Price": 300900,
+      "Supplier": "YS",
+      "ProductDetail": ""
+    },
+    {
+      "Categories": [
+        { "Id": 0, "Name": "Electronic" },
+        { "Id": 1, "Name": "Headphones and headsets" },
+        { "Id": 3, "Name": "Console" }
+      ],
+      "ID": 5,
+      "Name": "LeverX",
+      "Description": "The element",
+      "ReleaseDate": "1972-01-01",
+      "DiscontinuedDate": "2022-01-01",
+      "Rating": 2,
+      "Price": 90,
+      "Supplier": "bla-bla",
+      "ProductDetail": ""
+    },
+    {
+      "Categories": [
+        { "Id": 0, "Name": "Electronic" },
+        { "Id": 1, "Name": "Headphones and headsets" },
+        { "Id": 2, "Name": "Accessories" }
+      ],
+      "ID": 6,
+      "Name": "Pro",
+      "Description": "Element",
+      "ReleaseDate": "1868-12-14",
+      "DiscontinuedDate": "1789-04-09",
+      "Rating": 0,
       "Price": 4600,
       "Supplier": "aaa",
+      "ProductDetail": ""
+    },
+    {
+      "Categories": [
+        { "Id": 0, "Name": "Electronic" },
+        { "Id": 1, "Name": "Headphones and headsets" },
+        { "Id": 2, "Name": "Accessories" }
+      ],
+      "ID": 7,
+      "Name": "Pro",
+      "Description": "Elem",
+      "ReleaseDate": "186-17-31",
+      "DiscontinuedDate": "1723-02-05",
+      "Rating": 5,
+      "Price": 80,
+      "Supplier": "iii",
       "ProductDetail": ""
     }
   ]

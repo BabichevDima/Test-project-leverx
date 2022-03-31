@@ -18,8 +18,8 @@
 					</Breadcrumbs>
 				</f:breadcrumbs>
 				<f:actions>
-					<Button text="Edit" type="Ghost" press=""/>
-					<Button text="Delete" type="Reject" press=""/>
+					<Button text="{i18n>ButtonEdit}" icon="sap-icon://edit" type="Ghost" press=""/>
+					<Button text="{i18n>ButtonDelete}" icon="sap-icon://delete" type="Reject" press=""/>
 				</f:actions>
 			</f:DynamicPageTitle>
 		</f:title>
@@ -69,7 +69,7 @@
 					</Toolbar>
 				</headerToolbar>
 				<columns>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column minScreenWidth="Tablet" demandPopin="true" >
 						<HBox alignItems="Center">
 							<Button type="Transparent" icon="sap-icon://{appViewSort>/sortType/Name}" press="onSortButtonPress('Name')"/>
 							<Text text="{i18n>Name}"/>
@@ -78,12 +78,12 @@
 				</columns>
 
 				<items>
-					<ColumnListItem type="Active" press="onNavProductDetailsPress">
-						<HBox>
+					<ColumnListItem type="Active" press="onNavProductDetailsPress" width="100vw">
+						<Toolbar style="Clear">
 							<Text maxLines="1" text="{appView>Name}"/>
 							<ToolbarSpacer/>
 							<Button type="Transparent" enabled="false" icon="sap-icon://slim-arrow-right"/>
-						</HBox>
+						</Toolbar>
 					</ColumnListItem>
 				</items>
 			</Table>
