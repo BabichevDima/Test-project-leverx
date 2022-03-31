@@ -148,13 +148,40 @@ sap.ui.define(
           var activeStatusFilterOnPrice    = oAppViewModel.getProperty('/activeStatusFilterOnPrice');
           var activeStatusFilterOnSupplier = oAppViewModel.getProperty('/activeStatusFilterOnSupplier');
           var activeStatusFilterOnRating   = oAppViewModel.getProperty('/activeStatusFilterOnRating');
+          var jointFilter
 
-          var testAllFilters = [activeStatusFilterOnName, activeStatusFilterOnPrice, ...activeStatusFilterOnSupplier, ...activeStatusFilterOnRating];
+          if(activeStatusFilterOnSupplier.length > 1){
+            var jointFilterSupplier = new Filter({
+              filters: [ ...activeStatusFilterOnSupplier ],
+              and: false
+            });
+
+            jointFilter = new Filter({
+              filters: [activeStatusFilterOnName, activeStatusFilterOnPrice, ...activeStatusFilterOnRating, jointFilterSupplier],
+              and: true
+            });
+          } else {
+            jointFilter = new Filter({
+              filters: [activeStatusFilterOnName, activeStatusFilterOnPrice, ...activeStatusFilterOnRating, ...activeStatusFilterOnSupplier],
+              and: true
+            });
+          }
+
+
+
           
-          var jointFilter = new Filter({
-            filters: [activeStatusFilterOnName, activeStatusFilterOnPrice, ...activeStatusFilterOnSupplier, ...activeStatusFilterOnRating],
-            and: true
-          });
+
+
+          // var jointFilter = new Filter({
+          //   filters: [activeStatusFilterOnName, activeStatusFilterOnPrice, ...activeStatusFilterOnRating],
+          //   and: true
+          // });
+
+          // var test = new Filter({
+          //   filters: [jointFilter, jointFilterSupplier],
+          //   and: true
+          // });
+
   
           oItemsBinding.filter(jointFilter, FilterType.Application);
         },
