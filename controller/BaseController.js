@@ -200,13 +200,13 @@ sap.ui.define(
       /**
 			 * "Cancel" button press event handler (in the dialog create element).
 			 */
-      onDialogClosePress: function() {
-        var oODataModel = this.getView().getModel('oData');
-        var oCtx = this.oDialog.getBindingContext();
+      // onDialogClosePress: function() {
+      //   var oODataModel = this.getView().getModel('oData');
+      //   var oCtx = this.oDialog.getBindingContext();
 
-        oODataModel.deleteCreatedEntry(oCtx);
-        this.oDialog.close();
-      }
+      //   oODataModel.deleteCreatedEntry(oCtx);
+      //   this.oDialog.close();
+      // }
     });
   }
 );

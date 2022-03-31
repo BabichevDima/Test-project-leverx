@@ -30,28 +30,36 @@
 				<layout:HorizontalLayout allowWrapping="true">
 					<layout:VerticalLayout class="sapUiMediumMarginEnd">
 						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
-							<Label design="Bold" text="{i18n>Email}:" class="sapUiTinyMarginEnd"/>
+							<Label design="Bold" text="{i18n>Name}:" class="sapUiTinyMarginEnd"/>
 							<Text text="{appView>Name}"/>
 						</FlexBox>
 						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
-							<Label design="Bold" text="{i18n>PhoneNumber}:" class="sapUiTinyMarginEnd"/>
-							<Text text="{}"/>
-						</FlexBox>
-						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
-							<Label design="Bold" text="{i18n>Address}:" class="sapUiTinyMarginEnd"/>
-							<Text text="sdsd d s gdf df g fd"/>
+							<Label design="Bold" text="{i18n>Description}:" class="sapUiTinyMarginEnd"/>
+							<Text text="{appView>Description}"/>
 						</FlexBox>
 					</layout:VerticalLayout>
+
 					<layout:VerticalLayout>
 						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
-							<Label design="Bold" text="{i18n>Established}:" class="sapUiTinyMarginEnd"/>
-							<Text text="{ path: '', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd MMM YYYY'}}"/>
-						</FlexBox>
-						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
-							<Label design="Bold" text="{i18n>FloorArea}:" class="sapUiTinyMarginEnd"/>
-							<Text text="{}"/>
+							<Label design="Bold" text="Release Date:" class="sapUiTinyMarginEnd"/>
+							<Text text="{appView>ReleaseDate}"/>
 						</FlexBox>
 					</layout:VerticalLayout>
+
+					<layout:VerticalLayout>
+						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
+							<Label design="Bold" text="Discontinued Date:" class="sapUiTinyMarginEnd"/>
+							<Text text="{appView>DiscontinuedDate}"/>
+						</FlexBox>
+					</layout:VerticalLayout>
+
+					<layout:VerticalLayout>
+						<FlexBox direction="Row" alignItems="Start" class="sapUiTinyMarginBottom">
+							<Label design="Bold" text="Supplier:" class="sapUiTinyMarginEnd"/>
+							<Text text="{appView>Supplier}"/>
+						</FlexBox>
+					</layout:VerticalLayout>
+
 				</layout:HorizontalLayout>
 			</f:DynamicPageHeader>
 		</f:header>
@@ -69,7 +77,7 @@
 					</Toolbar>
 				</headerToolbar>
 				<columns>
-					<Column minScreenWidth="Tablet" demandPopin="true" >
+					<Column minScreenWidth="Tablet" demandPopin="true">
 						<HBox alignItems="Center">
 							<Button type="Transparent" icon="sap-icon://{appViewSort>/sortType/Name}" press="onSortButtonPress('Name')"/>
 							<Text text="{i18n>Name}"/>

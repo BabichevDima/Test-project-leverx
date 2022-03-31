@@ -158,6 +158,10 @@ sap.ui.define(
   
           oItemsBinding.filter(jointFilter, FilterType.Application);
         },
+
+        onDialogClosePress: function() {
+          this.oDialog.close();
+        }
       }
     );
   }
