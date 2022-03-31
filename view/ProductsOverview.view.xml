@@ -122,7 +122,7 @@
 							<Text text="{i18n>Rating}"/>
 						</HBox>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column minScreenWidth="Tablet" demandPopin="true" width="60px">
 					</Column>
 				</columns>
 
@@ -135,9 +135,10 @@
 						<Text maxLines="1" text="{appView>DiscontinuedDate}"/>
 						<Text maxLines="1" text="{appView>Supplier}"/>
 						<RatingIndicator enabled="false" maxValue="5" class="sapUiSmallMarginBottom" value="{appView>Rating}" tooltip="Rating Product" />
-						<HBox>
-							<Button type="Transparent" enabled="false" icon="sap-icon://slim-arrow-right" class="sapUiMediumMarginBegin"/>
-						</HBox>
+						<Toolbar style="Clear">
+							<ToolbarSpacer/>
+							<Button type="Transparent" enabled="false" icon="sap-icon://slim-arrow-right"/>
+						</Toolbar>
 					</ColumnListItem>
 
 				</items>
