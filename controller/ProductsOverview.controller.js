@@ -30,7 +30,7 @@ sap.ui.define(
             activeStatusFilterOnPrice:      new Filter("Price", FilterOperator.GT, ""),
             activeStatusFilterOnSupplier:   [new Filter("Supplier", FilterOperator.Contains, "")],
             activeStatusFilterOnRating:     [new Filter("Rating", FilterOperator.GT, "")],
-            // activeStatusFilterOnCategories: new Filter("Categories/Name", FilterOperator.Contains, ""),
+            activeStatusFilterOnCategories: [],
             sortType: {
               Name:             "sort",
               Description:      "sort",
@@ -143,14 +143,15 @@ sap.ui.define(
         },
 
         _jointFilter: function(){
-          var oProductsList                = this.byId("ProductsTable");
-          var oItemsBinding                = oProductsList.getBinding("items");
-          var oAppViewModel                = this.getView().getModel("appViewSort");
-          var activeStatusFilterOnName     = oAppViewModel.getProperty('/activeStatusFilterOnName');
-          var activeStatusFilterOnPrice    = oAppViewModel.getProperty('/activeStatusFilterOnPrice');
-          var activeStatusFilterOnSupplier = oAppViewModel.getProperty('/activeStatusFilterOnSupplier');
-          var activeStatusFilterOnRating   = oAppViewModel.getProperty('/activeStatusFilterOnRating');
-          var jointFilter
+          var oProductsList                  = this.byId("ProductsTable");
+          var oItemsBinding                  = oProductsList.getBinding("items");
+          var oAppViewModel                  = this.getView().getModel("appViewSort");
+          var activeStatusFilterOnName       = oAppViewModel.getProperty('/activeStatusFilterOnName');
+          var activeStatusFilterOnPrice      = oAppViewModel.getProperty('/activeStatusFilterOnPrice');
+          var activeStatusFilterOnSupplier   = oAppViewModel.getProperty('/activeStatusFilterOnSupplier');
+          var activeStatusFilterOnRating     = oAppViewModel.getProperty('/activeStatusFilterOnRating');
+          var activeStatusFilterOnCategories = oAppViewModel.getProperty('/activeStatusFilterOnCategories');
+          var jointFilter;
 
           if(activeStatusFilterOnSupplier.length > 1){
             var jointFilterSupplier = new Filter({
@@ -159,12 +160,12 @@ sap.ui.define(
             });
 
             jointFilter = new Filter({
-              filters: [activeStatusFilterOnName, activeStatusFilterOnPrice, ...activeStatusFilterOnRating, jointFilterSupplier],
+              filters: [activeStatusFilterOnName, activeStatusFilterOnPrice, ...activeStatusFilterOnRating, jointFilterSupplier, activeStatusFilterOnCategories],
               and: true
             });
           } else {
             jointFilter = new Filter({
-              filters: [activeStatusFilterOnName, activeStatusFilterOnPrice, ...activeStatusFilterOnRating, ...activeStatusFilterOnSupplier],
+              filters: [activeStatusFilterOnName, activeStatusFilterOnPrice, ...activeStatusFilterOnRating, ...activeStatusFilterOnSupplier, activeStatusFilterOnCategories],
               and: true
             });
           }
@@ -213,43 +214,33 @@ sap.ui.define(
     
           this.byId("productInput").setValue(oSelectedItem.getTitle());
 
-
-          var sValue        = this.byId("productInput").getValue();
-          var oProductsList = this.byId("ProductsTable");
-          var oItemsBinding = oProductsList.getBinding("items");
-
-
-          var oFilters = new Filter({
-            filters: [
-              new Filter('Categories/0/Name', FilterOperator.Contains, sValue),
-              new Filter('Categories/1/Name', FilterOperator.Contains, sValue),
-              new Filter('Categories/2/Name', FilterOperator.Contains, sValue),
-              new Filter('Categories/3/Name', FilterOperator.Contains, sValue),
-            ],
-            and: false
-          });
-
-          oItemsBinding.filter(oFilters)
+          var sValue = this.byId("productInput").getValue();
+ 
+          this.filteredOnCategories(sValue)
         },
 
         handleLiveChangeCategories: function(oEvent){
-          var sQuery        = oEvent.getParameter("value");
-          var oProductsList = this.byId("ProductsTable");
-          var oItemsBinding = oProductsList.getBinding("items");
+          var sQuery = oEvent.getParameter("value");
 
+          this.filteredOnCategories(sQuery)
+        },
+
+        filteredOnCategories: function(sQuery){
+          var oAppViewModel = this.getView().getModel("appView");
+          var aCategories   = oAppViewModel.getProperty('/Categories');
+
+          var aFilters = aCategories.map((elem)=>{
+            return new Filter(`Categories/${elem.Id}/Name`, FilterOperator.Contains, sQuery)
+          })
 
           var oFilters = new Filter({
-            filters: [
-              new Filter('Categories/0/Name', FilterOperator.Contains, sQuery),
-              new Filter('Categories/1/Name', FilterOperator.Contains, sQuery),
-              new Filter('Categories/2/Name', FilterOperator.Contains, sQuery),
-              new Filter('Categories/3/Name', FilterOperator.Contains, sQuery),
-            ],
+            filters: aFilters,
             and: false
           });
 
-          oItemsBinding.filter(oFilters)
-
+          var oAppViewModelSort = this.getView().getModel('appViewSort');
+          oAppViewModelSort.setProperty('/activeStatusFilterOnCategories', oFilters);
+          this._jointFilter()
         },
       }
     );

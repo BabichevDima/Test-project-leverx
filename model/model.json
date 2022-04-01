@@ -3,7 +3,7 @@
     { "Id": 0, "Name": "Electronic" },
     { "Id": 1, "Name": "Headphones and headsets" },
     { "Id": 2, "Name": "Accessories" },
-    { "Id": 3, "Name": "Console" }
+    { "Id": 3, "Name": "Mobile phones" }
   ],
   "Products": [
     {
@@ -25,7 +25,7 @@
     {
       "Categories": [
         { "Id": 0, "Name": "Electronic" },
-        { "Id": 3, "Name": "Console" }
+        { "Id": 3, "Name": "Mobile phones" }
       ],
       "ID": 2,
       "Name": "LeverX",
@@ -68,7 +68,7 @@
     },
     {
       "Categories": [
-        { "Id": 3, "Name": "Console" }
+        { "Id": 3, "Name": "Mobile phones" }
       ],
       "ID": 5,
       "Name": "LeverX",
