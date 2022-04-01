@@ -135,10 +135,10 @@ sap.ui.define(
 
         onRatingChange: function (oEvent) {
           var nQuery        = oEvent.getParameter("value");
-          var key           = nQuery ? nQuery : "";
+          var key           = nQuery ? [new Filter("Rating", FilterOperator.EQ, nQuery)] : [];
           var oAppViewModel = this.getView().getModel("appViewSort");
 
-          oAppViewModel.setProperty('/activeStatusFilterOnRating', [new Filter("Rating", FilterOperator.EQ, key)]);
+          oAppViewModel.setProperty('/activeStatusFilterOnRating', key);
           this._jointFilter()
         },
 
@@ -151,7 +151,7 @@ sap.ui.define(
           var activeStatusFilterOnSupplier   = oAppViewModel.getProperty('/activeStatusFilterOnSupplier');
           var activeStatusFilterOnRating     = oAppViewModel.getProperty('/activeStatusFilterOnRating');
           var activeStatusFilterOnCategories = oAppViewModel.getProperty('/activeStatusFilterOnCategories');
-          var jointFilter;
+          var aAllFilters                    = [];
 
           if(activeStatusFilterOnSupplier.length > 1){
             var jointFilterSupplier = new Filter({
@@ -159,16 +159,16 @@ sap.ui.define(
               and: false
             });
 
-            jointFilter = new Filter({
-              filters: [activeStatusFilterOnName, activeStatusFilterOnPrice, ...activeStatusFilterOnRating, jointFilterSupplier, activeStatusFilterOnCategories],
-              and: true
-            });
+            aAllFilters = [activeStatusFilterOnName, activeStatusFilterOnPrice, ...activeStatusFilterOnRating, jointFilterSupplier, activeStatusFilterOnCategories];
+
           } else {
-            jointFilter = new Filter({
-              filters: [activeStatusFilterOnName, activeStatusFilterOnPrice, ...activeStatusFilterOnRating, ...activeStatusFilterOnSupplier, activeStatusFilterOnCategories],
-              and: true
-            });
+            aAllFilters = [activeStatusFilterOnName, activeStatusFilterOnPrice, ...activeStatusFilterOnRating, ...activeStatusFilterOnSupplier, activeStatusFilterOnCategories];
           }
+
+          var jointFilter = new Filter({
+            filters: aAllFilters,
+            and: true
+          });
 
           oItemsBinding.filter(jointFilter, FilterType.Application);
         },
